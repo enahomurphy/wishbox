@@ -1,0 +1,47 @@
+{
+  "name": "wish-box",
+  "version": "1.0.0",
+  "description": "api for wishbox",
+  "main": "server.js",
+  "scripts": {
+    "test": "node_modules/.bin/_mocha test/**/*.js",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enahomurphy/wishbox.git"
+  },
+  "keywords": [
+    "wishbox",
+    "microservices",
+    "api",
+    "docker",
+    "mongo",
+    "nodejs"
+  ],
+  "author": "Enaho Murphy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enahomurphy/wishbox/issues"
+  },
+  "homepage": "https://github.com/enahomurphy/wishbox#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "chai": "^4.1.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^6.2.1",
+    "sinon": "^7.5.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "dotenv": "^8.1.0",
+    "express": "^4.15.3",
+    "faker": "^4.1.0",
+    "mongoose": "^5.7.3",
+    "nodemon": "^1.11.0",
+    "underscore": "^1.8.3",
+    "winston": "^3.2.1"
+  }
+}

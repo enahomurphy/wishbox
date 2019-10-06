@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  wishbox-service:
+    container_name: wishbox-service
+    image: node:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=development
+      - DB_URL=mongodb://mongo:27017/wishbox
+    volumes: 
+      - .:/var/www
+      - ./var/www/node_modules
+    ports:
+      - "8080:3000"
+    depends_on:
+      - whisbox-db
+    networks:
+      - wishbox_network
+
+  whisbox-db:
+    container_name: mongo
+    image: mongo:4.0.12
+    ports:
+      - "27019:27017"
+    networks:
+      - wishbox_network
+networks:
+  wishbox_network:
+    driver: bridge
