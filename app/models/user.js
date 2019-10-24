@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const Model = require('.');
 const helpers = require('./helpers');
@@ -54,6 +55,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: 'nigeria',
     },
+    password: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: {
@@ -63,15 +68,7 @@ const UserSchema = new mongoose.Schema(
   },
 );
 
-/**
- * @Class
- */
 class User extends Model {
-  /**
-   * Builds query for getting all data
-   * @param {String} search
-   * @return {Object} returns a single model
-   */
   static buildQuery(search) {
     this.query = search
       ? {
@@ -83,6 +80,14 @@ class User extends Model {
       }
       : {};
     return this;
+  }
+
+  validPassword(password) {
+    if (!password || !this.password) {
+      return false;
+    }
+
+    return bcrypt.compareSync(password, this.password);
   }
 }
 
@@ -99,6 +104,15 @@ UserSchema.post('save', (error, doc, next) => {
   }
 
   return next();
+});
+
+UserSchema.pre('save', function hashPassword(next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
+
+  this.password = bcrypt.hashSync(this.password, 8);
+  next();
 });
 
 UserSchema.loadClass(User);

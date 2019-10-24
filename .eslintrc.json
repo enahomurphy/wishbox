@@ -34,13 +34,14 @@
     "curly": [1, "multi-line"],
     "no-shadow": [1, { "allow": ["req", "res", "err"] }],
     "no-underscore-dangle": "off",
+    "require-jsd": "off",
     "valid-jsdoc": [1, {
       "requireReturn": true,
       "requireReturnType": true,
       "requireParamDescription": false,
       "requireReturnDescription": true
     }],
-    "require-jsdoc": [1, {
+    "require-jsdoc": [0, {
         "require": {
             "FunctionDeclaration": true,
             "MethodDefinition": true,

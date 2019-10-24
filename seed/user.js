@@ -7,18 +7,10 @@ const Seed = require('.');
  * @class
  */
 class UserSeed extends Seed {
-  /**
-   * @constructor
-   * @param {Object} schema object
-   */
   constructor() {
     super(User);
   }
 
-  /**
-   * generates demo data for collection
-   * @return {void}
-   */
   generate() {
     return {
       name: faker.name.findName().toLowerCase(),
@@ -27,6 +19,7 @@ class UserSeed extends Seed {
       phone: faker.phone.phoneNumber(),
       profileImage: faker.image.avatar(),
       street: faker.address.streetAddress(),
+      password: 'test1234',
     };
   }
 }

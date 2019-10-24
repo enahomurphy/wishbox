@@ -6,10 +6,6 @@ require('../server');
  * @class
  */
 module.exports = class Seed {
-  /**
-   * @constructor
-   * @param {Object} schema object
-   */
   constructor(schema) {
     this.data = [];
     this.schema = schema;
@@ -18,22 +14,12 @@ module.exports = class Seed {
     }
   }
 
-  /**
-   * wipes collection
-   * @return {Object} returns object instance
-   */
   wipe() {
     this.data = [];
     this.schema.collection.deleteMany();
     return this;
   }
 
-  /**
-   * generates array of data to be
-   * inserted into a collection
-   * @param {Integer} number
-   * @return {Object} Object
-   */
   build(number = 1) {
     for (let i = 0; i < number; i += 1) {
       this.data.push(i);
@@ -42,29 +28,18 @@ module.exports = class Seed {
     return this;
   }
 
-  /**
-   * seeds all generated data
-   * @param {limit} limit this amount of data to seed defaults to 1
-   * @param {reset} reset specifices if collection should be
-   * wipped defautls to true
-   * @return {Promise} Object
-   */
   seed(limit = 1, reset = true) {
     if (reset) {
       this.wipe();
     }
 
-    return this
+    const seedPromises = this
       .build(limit)
-      .schema.insertMany(this.data);
+      .data.map(data => (new this.schema(data).save()));
+
+    return Promise.all(seedPromises);
   }
 
-  /**
-   * Inserts the data into the collection and exit
-   * with a status of 0 if succesful or throws an error
-   * if an error occurs
-   * @return {void}
-   */
   run() {
     if (['development', 'test'].includes(process.env.NODE_ENV)) {
       this.schema.insertMany(this.data)

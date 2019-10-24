@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const hasError = (message, field) => (new RegExp(field, 'gmi')).test(message);
 
 const generateMessage = field => {

@@ -5,7 +5,6 @@ const {
   update,
 } = require('../../controllers/slot');
 
-
 module.exports = router => {
   router.get('/slots', getAll)
     .get('/slots/:id', get)
