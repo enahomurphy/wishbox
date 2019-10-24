@@ -10,6 +10,10 @@ class User extends Controller {
     this.updatable = ['name', 'profileImage', 'street', 'city'];
     return this;
   }
+
+  me(req, res) {
+    return res.status(200).send(req.headers.authorization);
+  }
 }
 
 module.exports = new User();

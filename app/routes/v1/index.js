@@ -7,9 +7,9 @@ const auth = require('./auth');
 module.exports = express => {
   const router = express.Router();
   wish(router);
-  user(router);
   slot(router);
   registerRoutes(router, auth);
+  registerRoutes(router, user);
 
   return router;
 };

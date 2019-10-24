@@ -57,7 +57,13 @@ const UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
+      required: [true, 'password is required'],
+    },
+    role: {
+      type: String,
+      enum: ['user', 'admin', 'superadmin'],
       required: true,
+      default: 'user',
     },
   },
   {
@@ -93,8 +99,13 @@ class User extends Model {
   toJSON() {
     return {
       _id: this._id,
+      name: this.name,
       email: this.email,
-      username: this._iusernamed,
+      username: this.username,
+      profileImage: this.profileImage,
+      street: this.street,
+      city: this.city,
+      role: this.role,
     };
   }
 }
