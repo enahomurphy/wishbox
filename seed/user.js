@@ -3,9 +3,6 @@ const faker = require('faker');
 const User = require('../app/models/user');
 const Seed = require('.');
 
-/**
- * @class
- */
 class UserSeed extends Seed {
   constructor() {
     super(User);

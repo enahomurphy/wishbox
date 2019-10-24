@@ -2,141 +2,90 @@ const _ = require('underscore');
 
 const Response = require('../common/response');
 const Transformer = require('../common/transformer');
+const { AsyncWrapper } = require('../middleware');
+
 /**
  * @class
  */
 module.exports = class Controller {
-  /**
-   * @constructor
-   * @param {Object} schema
-   * @param {String} type type of schema
-   * @param {String} relation query relationship
-   */
-  constructor(schema, type, relation) {
+  constructor(schema, type, param, relation) {
     this.schema = schema;
     this.updatable = [];
     this.type = type;
     this.relation = relation;
-    this.getAll = this.getAll.bind(this);
-    this.get = this.get.bind(this);
-    this.create = this.create.bind(this);
-    this.update = this.update.bind(this);
-    this.getRelation = this.getRelation.bind(this);
-    this.remove = this.remove.bind(this);
+    this.param = param;
+
+    this.getAll = AsyncWrapper(this.getAll.bind(this));
+    this.get = AsyncWrapper(this.get.bind(this));
+    this.create = AsyncWrapper(this.create.bind(this));
+    this.update = AsyncWrapper(this.update.bind(this));
+    this.getRelation = AsyncWrapper(this.getRelation.bind(this));
+    this.remove = AsyncWrapper(this.remove.bind(this));
   }
 
-  /**
-   * Set resource field that's updatable
-   * @param {Array} array
-   * @return {Object} returns this
-   */
+
   setUpdatable(array) {
     this.updatable = array;
     return this;
   }
 
-  /**
-   * Gets resource by id
-   * @param  {Object} req - request object
-   * @param  {Object} res - response object
-   * @return {Objects} returns a response
-   */
-  get(req, res) {
-    const { id } = req.params;
-    this.schema.get(id)
-      .then(data => {
-        if (data) {
-          return Response.success(res, data);
-        }
-        const message = `${this.type} with id ${id} not found`;
-        return Response.notFound(res, 'NotFound', message);
-      })
-      .catch(err => Response.serverError(res, 'ServerError', err.message));
+  async get(req, res) {
+    const id = req.params[this.param];
+    const data = await this.schema.get(id);
+
+    if (data) {
+      return Response.success(res, data);
+    }
+
+    const message = `${this.type} with id ${id} not found`;
+
+    return Response.notFound(res, 'NotFound', message);
   }
 
-
-  /**
-   * Gets all resource
-   * @param  {Object} req - request object
-   * @param  {Object} res - response object
-   * @return {Objects} returns a response
-   */
-  getAll(req, res) {
+  async getAll(req, res) {
     const { limit, next, q } = req.query;
-    this.schema.getAll(limit, next, q)
-      .then(data => Response.success(res, Transformer.transform(data)))
-      .catch(err => Response.serverError(res, 'ServerError', err.message));
+    const data = await this.schema.getAll(limit, next, q);
+
+    return Response.success(res, Transformer.transform(data));
   }
 
-  /**
-   * Creates a new  resource
-   * @param  {Object} req - request object
-   * @param  {Object} res - response object
-   * @return {Objects} returns a response
-   */
-  create(req, res) {
+  async create(req, res) {
     const instance = new this.schema(req.body);
-    instance.validate(err => {
-      if (err) {
-        return Response
-          .badRequest(res, 'ValidationError', err);
-      }
-      instance.save()
-        .then(data => {
-          Response.success(res, data);
-        })
-        .catch(err => Response.serverError(res, 'ServerError', err.message));
-    });
+    const error = instance.validateSync();
+    if (error) {
+      return Response
+        .badRequest(res, 'ValidationError', error);
+    }
+
+    const data = await instance.save();
+    Response.success(res, data);
   }
 
-  /**
-   * updates a resource  by id
-   * @param  {Object} req - request object
-   * @param  {Object} res - response object
-   * @return {Objects} returns a response
-   */
-  update(req, res) {
+  async update(req, res) {
     const { id } = req.params;
     const { updatable } = this.setUpdatable();
     const body = _.pick(req.body, updatable);
-    this.schema.updateData(id, body)
-      .then(data => {
-        Response.success(res, data);
-      })
-      .catch(err => Response.serverError(res, 'ServerError', err.message));
+    const data = await this.schema.updateData(id, body);
+
+    return Response.success(res, data);
   }
 
-  /**
-   * gets data by relationship
-   * @param  {Object} req - request object
-   * @param  {Object} res - response object
-   * @return {Objects} returns a response
-   */
-  getRelation(req, res) {
+  async getRelation(req, res) {
     const { limit, page, q } = req.query;
     const relation = { [this.relation]: req.params[this.relation] };
-    this.schema.getAll(limit, page, q, relation)
-      .then(result => Response.success(res, Transformer.transform(result)))
-      .catch(err => Response.serverError(res, 'ServerError', err.message));
+
+    const data = await this.schema.getAll(limit, page, q, relation);
+    return Response.success(res, Transformer.transform(data));
   }
 
-  /**
-   * deletes a resource
-   * @param  {Object} req - request object
-   * @param  {Object} res - response object
-   * @return {Objects} returns a response
-   */
-  remove(req, res) {
+  async remove(req, res) {
     const { id } = req.params;
-    this.schema.delete(id)
-      .then(data => {
-        if (data) {
-          return Response.success(res,
-            { message: `${this.type} with id ${id} has been deleted` });
-        }
-        const message = `${this.type} with id ${id} not found`;
-        return Response.notFound(res, 'NotFound', message);
-      })
-      .catch(err => Response.serverError(res, 'ServerError', err.message));
+    const data = await this.schema.delete(id);
+    if (data) {
+      return Response.success(res, { message: `${this.type} with id ${id} has been deleted` });
+    }
+
+    const message = `${this.type} with id ${id} not found`;
+    return Response.notFound(res, 'NotFound', message);
   }
 };

@@ -6,11 +6,11 @@ const {
 } = require('../../controllers/wish');
 
 module.exports = router => {
-  router.get('/whishes', getAll)
+  router.get('/wishes', getAll)
     .post('/wishes', create)
-    .get('/wishes/:id', get)
-    .patch('/wishes/:id', update)
-    .delete('/wishes/:id', update);
+    .get('/wishes/:wishId', get)
+    .patch('/wishes/:wishId', update)
+    .delete('/wishes/:wishId', update);
 
   return router;
 };

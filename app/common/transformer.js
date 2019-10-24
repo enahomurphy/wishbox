@@ -1,11 +1,4 @@
 module.exports = class Transformer {
-  /**
-   * Creates all resource metadata
-   * @param {Number} count
-   * @param {Number} currentPage
-   * @param {Number} perPage
-   * @return {Object} returns meta data object
-   */
   static metaData(count, currentPage, perPage) {
     return {
       itemCount: count,
@@ -16,11 +9,6 @@ module.exports = class Transformer {
     };
   }
 
-  /**
-   * A wrapper that formats get all resource response
-   * @param {Object} data data to format
-   * @return {Object} returns formated data
-   */
   static transform({ count, currentPage, data }) {
     return {
       data,

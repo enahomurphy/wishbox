@@ -1,24 +1,13 @@
 const Controller = require('.');
 const Schema = require('../models/wish');
 
-
-/**
- * @class
- */
 class Wish extends Controller {
-  /**
-   * @constructor
-   */
   constructor() {
-    super(Schema, 'wish');
+    super(Schema, 'wish', 'wishId');
   }
 
-  /**
-   * @param {Array} array
-   * @return {Object} returns this
-   */
   setUpdatable() {
-    this.updatable = ['title', 'details', 'wwee'];
+    this.updatable = ['title', 'details', 'status'];
     return this;
   }
 }

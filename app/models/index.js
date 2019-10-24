@@ -3,9 +3,6 @@ const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 
 module.exports = class Model {
-  /**
-   * @constructor
-   */
   constructor() {
     this.query = {};
     if (this.buildQuery) {
@@ -13,24 +10,12 @@ module.exports = class Model {
     }
   }
 
-  /**
-   * Handles single object query
-   * @param {String} id
-   * @return {Promise} returns a single model
-   */
+
   static get(id) {
     return this.findById(id).lean();
   }
 
-  /**
-   * Gets all set, handles pagination and
-   * query params
-   * @param {int} limit
-   * @param {int} page
-   * @param {string} search string to match
-   * @param {Object} where specific data to get
-   * @return {Promise} returns an array object
-   */
+
   static getAll(limit, page, search, where = {}) {
     limit = parseInt(limit, 10);
     limit = limit || 10;
@@ -43,6 +28,7 @@ module.exports = class Model {
         .find(this.query)
         .limit(limit)
         .skip(skip)
+        .lean()
         .then(data => {
           result.data = data;
           this.buildQuery(search)
@@ -59,21 +45,11 @@ module.exports = class Model {
     });
   }
 
-  /**
-   * deletes an object
-   * @param {int} id
-   * @return {Promise} returns an object
-   */
+
   static delete(id) {
     return this.findByIdAndRemove(id);
   }
 
-  /**
-   * Handles model update
-   * @param {int} id
-   * @param {object} details
-   * @return {Promise} returns an object
-   */
   static updateData(id, details) {
     const options = {
       new: true,

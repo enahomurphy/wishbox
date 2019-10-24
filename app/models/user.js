@@ -89,6 +89,14 @@ class User extends Model {
 
     return bcrypt.compareSync(password, this.password);
   }
+
+  toJSON() {
+    return {
+      _id: this._id,
+      email: this.email,
+      username: this._iusernamed,
+    };
+  }
 }
 
 const uniqueFields = ['username', 'email', 'phone'];
