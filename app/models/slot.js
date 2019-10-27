@@ -39,19 +39,19 @@ const SlotSchema = new mongoose.Schema(
   },
 );
 
-/**
- * @Class
- */
-class Wish extends Model {
-  /**
-   * @param {string} search
-   * @return {object} returns a user
-   */
+class Slot extends Model {
   static buildQuery(search) {
-    this.query = search ? {
-      title: new RegExp(search),
-      details: new RegExp(search),
-    } : {};
+    const query = {}
+    if (search.title) {
+      query.title = new RegExp(search.title, 'gmi');
+    }
+
+    if (search.slotId) {
+      query._id = search.slotId
+    }
+
+    this.query = query;
+
     return this;
   }
 }
@@ -71,6 +71,6 @@ SlotSchema.post('save', (error, doc, next) => {
   return next(doc);
 });
 
-SlotSchema.loadClass(Wish);
+SlotSchema.loadClass(Slot);
 
 module.exports = mongoose.model('Slot', SlotSchema);

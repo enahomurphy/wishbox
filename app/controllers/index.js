@@ -43,7 +43,7 @@ module.exports = class Controller {
   }
 
   async getAll(req, res) {
-    const { limit, next, q } = req.query;
+    const { limit, next, ...q } = req.query;
     const data = await this.schema.getAll(limit, next, q);
 
     return Response.success(res, Transformer.transform(data));
@@ -71,7 +71,7 @@ module.exports = class Controller {
   }
 
   async getRelation(req, res) {
-    const { limit, page, q } = req.query;
+    const { limit, page, ...q } = req.query;
     const relation = { [this.relation]: req.params[this.relation] };
 
     const data = await this.schema.getAll(limit, page, q, relation);

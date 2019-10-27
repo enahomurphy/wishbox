@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.set('useFindAndModify', false);
+mongoose.set('debug', true);
 
 module.exports = class Model {
   constructor() {
@@ -14,7 +15,7 @@ module.exports = class Model {
     return this.findById(id).lean();
   }
 
-  static getAll(limit, page, search, where = {}) {
+  static getAll(limit, page, search) {
     limit = parseInt(limit, 10);
     limit = limit || 10;
     page = page || 1;
@@ -22,7 +23,6 @@ module.exports = class Model {
     const result = { limit, currentPage: page };
     return new Promise((resolve, reject) => {
       this.buildQuery(search)
-        .where(where)
         .find(this.query)
         .limit(limit)
         .skip(skip)
@@ -30,9 +30,8 @@ module.exports = class Model {
         .then(data => {
           result.data = data;
           this.buildQuery(search)
-            .where(where)
             .find(this.query)
-            .count()
+            .countDocuments()
             .then(count => {
               result.count = count;
               resolve(result);
