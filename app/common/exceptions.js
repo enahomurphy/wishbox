@@ -11,3 +11,18 @@ module.exports.BadRequestException = function BadRequestException(message) {
   this.type = 'BadRequest';
   this.name = 'BadRequestException';
 };
+
+module.exports.UnAutthorizedRequestException = function BadRequestException(message) {
+  this.message = message;
+  this.code = 401;
+  this.type = 'UnAutthorizedRequest';
+  this.name = 'UnAutthorizedRequestException';
+};
+
+module.exports.ForbiddenRequestException = function BadRequestException(message) {
+  this.message = message;
+  this.code = 403;
+  this.type = 'ForbiddenRequest';
+  this.name = 'ForbiddenRequestException';
+};
+

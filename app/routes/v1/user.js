@@ -7,11 +7,13 @@ const {
   remove,
   me,
 } = require('../../controllers/user');
+const { Auth, HasAccess } = require('../../middleware/permissions')
 
 const routes = [
   {
     path: '/users',
     controller: [
+      Auth,
       getAll,
     ],
     method: 'get',
@@ -19,6 +21,7 @@ const routes = [
   {
     path: '/me',
     controller: [
+      Auth,
       me,
     ],
     method: 'get',
@@ -26,6 +29,7 @@ const routes = [
   {
     path: '/users/:userId',
     controller: [
+      Auth,
       get,
     ],
     method: 'get',
@@ -33,6 +37,7 @@ const routes = [
   {
     path: '/users/:userId/wishes',
     controller: [
+      Auth,
       getRelation,
     ],
     method: 'get',
@@ -40,6 +45,7 @@ const routes = [
   {
     path: '/users',
     controller: [
+      Auth,
       create,
     ],
     method: 'post',
@@ -47,6 +53,7 @@ const routes = [
   {
     path: '/users/:userId',
     controller: [
+      Auth,
       update,
     ],
     method: 'patch',
@@ -54,6 +61,8 @@ const routes = [
   {
     path: '/users/:userId',
     controller: [
+      Auth,
+      HasAccess('admin'),
       remove,
     ],
     method: 'delete',

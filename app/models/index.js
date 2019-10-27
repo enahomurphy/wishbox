@@ -10,11 +10,9 @@ module.exports = class Model {
     }
   }
 
-
   static get(id) {
     return this.findById(id).lean();
   }
-
 
   static getAll(limit, page, search, where = {}) {
     limit = parseInt(limit, 10);
@@ -44,7 +42,6 @@ module.exports = class Model {
         .catch(error => reject(error));
     });
   }
-
 
   static delete(id) {
     return this.findByIdAndRemove(id);

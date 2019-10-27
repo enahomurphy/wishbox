@@ -11,8 +11,8 @@ class User extends Controller {
     return this;
   }
 
-  me(req, res) {
-    return res.status(200).send(req.headers.authorization);
+  async me(req, res) {
+    res.status(200).json(req.user);
   }
 }
 
