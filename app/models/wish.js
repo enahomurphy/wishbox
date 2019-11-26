@@ -68,14 +68,39 @@ const WishSchema = new mongoose.Schema(
 
 class Wish extends Model {
   static buildQuery(search) {
-    this.query = search
-      ? {
-        $or: [
-          { title: new RegExp(search) },
-          { details: new RegExp(search) },
-        ],
-      }
-      : {};
+    const query = {};
+    const {
+      title, q, wishId, status, details, deleted,
+    } = search;
+
+    if (q) {
+      query.$or = [
+        { title: new RegExp(q, 'gmi') },
+        { details: new RegExp(q, 'gmi') },
+      ];
+    }
+
+    if (title) {
+      query.title = new RegExp(title, 'gmi');
+    }
+
+    if (details) {
+      query.details = new RegExp(details, 'gmi');
+    }
+
+    if (['pending', 'fulfilled', 'open'].includes(status)) {
+      query.status = status;
+    }
+
+    if (mongoose.Types.ObjectId.isValid(wishId)) {
+      query._id = wishId;
+    }
+
+    if (deleted) {
+      query.deleted = Boolean(deleted === 'true');
+    }
+
+    this.query = query;
     return this;
   }
 }

@@ -46,14 +46,14 @@ const SlotSchema = new mongoose.Schema(
 );
 
 class Slot extends Model {
-  static buildQuery(search) {
+  static buildQuery({ title, slotId }) {
     const query = {};
-    if (search.title) {
-      query.title = new RegExp(search.title, 'gmi');
+    if (title) {
+      query.title = new RegExp(title, 'gmi');
     }
 
-    if (search.slotId) {
-      query._id = search.slotId;
+    if (mongoose.Types.ObjectId.isValid(slotId)) {
+      query._id = slotId;
     }
 
     this.query = query;

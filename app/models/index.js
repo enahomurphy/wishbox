@@ -29,8 +29,7 @@ module.exports = class Model {
         .lean()
         .then(data => {
           result.data = data;
-          this.buildQuery(search)
-            .find(this.query)
+          this.find(this.query)
             .countDocuments()
             .then(count => {
               result.count = count;

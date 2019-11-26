@@ -91,6 +91,29 @@ class User extends Model {
         ],
       }
       : {};
+
+    const query = {};
+    const {
+      name, q, username, email, userId,
+    } = search;
+
+    if (q) {
+      query.$or = [
+        { title: new RegExp(q, 'gmi') },
+        { details: new RegExp(q, 'gmi') },
+      ];
+    }
+
+    [name, username, email].forEach(() => {
+      if (name) {
+        query[name] = new RegExp(name, 'gmi');
+      }
+    });
+
+    if (mongoose.Types.ObjectId.isValid(userId)) {
+      query._id = userId;
+    }
+
     return this;
   }
 
