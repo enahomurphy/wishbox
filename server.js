@@ -1,6 +1,5 @@
 const express = require('express');
 const winston = require('winston');
-const { join } = require('path');
 const { json, urlencoded } = require('body-parser');
 
 const config = require('./app/config');
@@ -10,8 +9,6 @@ const { GlobalErrorHandler } = require('./app/middleware');
 
 const app = express();
 const port = 3000 || process.env.PORT;
-
-require('dotenv').config({ path: join(__dirname, '.env') });
 
 app.get('/', (req, res) => {
   res.send('Hello world');
