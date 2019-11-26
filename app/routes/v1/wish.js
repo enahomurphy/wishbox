@@ -3,14 +3,45 @@ const {
   getAll,
   create,
   update,
+  remove,
 } = require('../../controllers/wish');
 
-module.exports = router => {
-  router.get('/wishes', getAll)
-    .post('/wishes', create)
-    .get('/wishes/:wishId', get)
-    .patch('/wishes/:wishId', update)
-    .delete('/wishes/:wishId', update);
+const routes = [
+  {
+    path: '/wishes',
+    controller: [
+      getAll,
+    ],
+    method: 'get',
+  },
+  {
+    path: '/wishes/:wishId',
+    controller: [
+      get,
+    ],
+    method: 'get',
+  },
+  {
+    path: '/wishes',
+    controller: [
+      create,
+    ],
+    method: 'post',
+  },
+  {
+    path: '/wishes/:wishId',
+    controller: [
+      update,
+    ],
+    method: 'patch',
+  },
+  {
+    path: '/wishes/:wishId',
+    controller: [
+      remove,
+    ],
+    method: 'delete',
+  },
+];
 
-  return router;
-};
+module.exports = routes;

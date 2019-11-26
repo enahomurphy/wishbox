@@ -1,19 +1,20 @@
 const mongoose = require('mongoose');
+const exceptions = require('../common/exceptions');
 
-module.exports = (req, res, next) => {
-  const ids = ['slotId', 'wishId', 'userId'];
+const getErrors = (params, inValidIds) => inValidIds.map(value => ({
+  message: `id ${params[value]} is not valid`,
+  param: value,
+  location: 'params',
+}));
+
+
+module.exports = (ids = ['slotId', 'wishId', 'userId']) => (req, res, next) => {
   const { params } = req;
 
-  const hasValidIds = ids.every(value => {
-    if (params[value]) {
-      return mongoose.Types.ObjectId.isValid(params[value]);
-    }
+  const inValidIds = ids.filter(value => !mongoose.Types.ObjectId.isValid(params[value]));
 
-    return true;
-  });
-
-  if (!hasValidIds) {
-    return {};
+  if (inValidIds.length) {
+    throw new exceptions.BadRequestException('Invalid param id', getErrors(params, inValidIds));
   }
 
   return next();
