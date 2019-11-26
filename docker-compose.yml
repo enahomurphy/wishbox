@@ -17,6 +17,7 @@ services:
       - whisbox-db
     networks:
       - wishbox_network
+    command: npm run dev 
 
   whisbox-db:
     container_name: mongo
