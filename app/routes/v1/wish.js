@@ -5,6 +5,7 @@ const {
   update,
   remove,
 } = require('../../controllers/wish');
+const { Auth, HasAccess } = require('../../middleware/permissions');
 
 const routes = [
   {
@@ -24,6 +25,7 @@ const routes = [
   {
     path: '/wishes',
     controller: [
+      Auth,
       create,
     ],
     method: 'post',
@@ -31,6 +33,8 @@ const routes = [
   {
     path: '/wishes/:wishId',
     controller: [
+      Auth,
+      HasAccess('user', 'wish'),
       update,
     ],
     method: 'patch',
@@ -38,6 +42,8 @@ const routes = [
   {
     path: '/wishes/:wishId',
     controller: [
+      Auth,
+      HasAccess('user', 'wish'),
       remove,
     ],
     method: 'delete',

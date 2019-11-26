@@ -3,13 +3,52 @@ const {
   getAll,
   create,
   update,
+  remove,
 } = require('../../controllers/slot');
+const { Auth, HasAccess } = require('../../middleware/permissions');
 
-module.exports = router => {
-  router.get('/slots', getAll)
-    .get('/slots/:id', get)
-    .post('/slots', create)
-    .patch('/slots/:id', update);
+const routes = [
+  {
+    path: '/slots',
+    controller: [
+      getAll,
+    ],
+    method: 'get',
+  },
+  {
+    path: '/slots/:slotId',
+    controller: [
+      get,
+    ],
+    method: 'get',
+  },
+  {
+    path: '/slots',
+    controller: [
+      Auth,
+      HasAccess('admin', 'slot'),
+      create,
+    ],
+    method: 'post',
+  },
+  {
+    path: '/slots/:slotId',
+    controller: [
+      Auth,
+      HasAccess('admin', 'slot'),
+      update,
+    ],
+    method: 'patch',
+  },
+  {
+    path: '/slots/:slotId',
+    controller: [
+      Auth,
+      HasAccess('admin', 'slot'),
+      remove,
+    ],
+    method: 'delete',
+  },
+];
 
-  return router;
-};
+module.exports = routes;

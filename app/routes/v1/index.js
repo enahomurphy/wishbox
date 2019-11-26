@@ -14,7 +14,7 @@ module.exports = express => {
   ];
 
   validateParams(router, params);
-  slot(router);
+  registerRoutes(router, slot);
   registerRoutes(router, auth);
   registerRoutes(router, user);
   registerRoutes(router, wish);

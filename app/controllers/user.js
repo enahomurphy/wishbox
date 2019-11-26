@@ -7,7 +7,7 @@ class User extends Controller {
   }
 
   setUpdatable() {
-    this.updatable = ['name', 'profileImage', 'street', 'city'];
+    this.updatable = ['name', 'profileImage', 'street', 'city', 'password'];
     return this;
   }
 
