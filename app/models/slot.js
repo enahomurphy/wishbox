@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoseDelete = require('mongoose-delete');
 
 const Model = require('./');
 const helpers = require('./helpers');
@@ -30,24 +31,29 @@ const SlotSchema = new mongoose.Schema(
       type: Date,
       required: [true, 'end date is required'],
     },
+    deleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: {
       createdAt: 'created_at',
       updatedAt: 'updated_at',
+      deletedAt: 'deleted_at',
     },
   },
 );
 
 class Slot extends Model {
   static buildQuery(search) {
-    const query = {}
+    const query = {};
     if (search.title) {
       query.title = new RegExp(search.title, 'gmi');
     }
 
     if (search.slotId) {
-      query._id = search.slotId
+      query._id = search.slotId;
     }
 
     this.query = query;
@@ -72,5 +78,6 @@ SlotSchema.post('save', (error, doc, next) => {
 });
 
 SlotSchema.loadClass(Slot);
+SlotSchema.plugin(mongoseDelete);
 
 module.exports = mongoose.model('Slot', SlotSchema);

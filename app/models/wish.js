@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoseDelete = require('mongoose-delete');
 
 const Model = require('./');
 const helpers = require('./helpers');
@@ -51,23 +52,21 @@ const WishSchema = new mongoose.Schema(
       enum: ['pending', 'fulfilled', 'open'],
       default: 'open',
     },
+    deleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: {
       createdAt: 'created_at',
       updatedAt: 'updated_at',
+      deletedAt: 'deleted_at',
     },
   },
 );
 
-/**
- * @Class
- */
 class Wish extends Model {
-  /**
-   * @param {string} search
-   * @return {object} returns a user
-   */
   static buildQuery(search) {
     this.query = search
       ? {
@@ -82,5 +81,6 @@ class Wish extends Model {
 }
 
 WishSchema.loadClass(Wish);
+WishSchema.plugin(mongoseDelete);
 
 module.exports = mongoose.model('Wish', WishSchema);

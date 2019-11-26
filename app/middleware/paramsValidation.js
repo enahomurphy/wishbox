@@ -6,7 +6,7 @@ module.exports = (model, param) => asynWrapper(async (req, res, next) => {
   const Model = mongoose.model(model);
   const id = req.params[param];
 
-  const resource = await Model.findById(id).lean();
+  const resource = await Model.findOne({ _id: id, deleted: false }).lean();
 
   if (!resource) {
     throw new exceptions.NotFoudException(`${model} with id ${id} not found`);

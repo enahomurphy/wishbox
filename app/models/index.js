@@ -12,7 +12,7 @@ module.exports = class Model {
   }
 
   static get(id) {
-    return this.findById(id).lean();
+    return this.findOne({ _id: id, deleted: false }).lean();
   }
 
   static getAll(limit, page, search) {
@@ -23,7 +23,7 @@ module.exports = class Model {
     const result = { limit, currentPage: page };
     return new Promise((resolve, reject) => {
       this.buildQuery(search)
-        .find(this.query)
+        .find({ deleted: false, ...this.query })
         .limit(limit)
         .skip(skip)
         .lean()
@@ -47,9 +47,8 @@ module.exports = class Model {
   }
 
   static updateData(id, details) {
-    const options = {
-      new: true,
-    };
+    const options = { new: true };
+
     return this.findByIdAndUpdate(id, details, options);
   }
 };

@@ -1110,7 +1110,7 @@ express-validator@^6.2.0:
     lodash "^4.17.15"
     validator "^11.1.0"
 
-express@^4.15.3:
+express@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
   integrity sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==
@@ -2240,6 +2240,11 @@ mongodb@3.3.2:
     bson "^1.1.1"
     require_optional "^1.0.1"
     safe-buffer "^5.1.2"
+
+mongoose-delete@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/mongoose-delete/-/mongoose-delete-0.5.1.tgz#2b038b01fe8a29b16e160e17235ce47310246de9"
+  integrity sha512-uCNVIzrX846LjbHYmaiVZ9lNhOhVhxkEsBUVswE6WvU+UBYj6G96rXra0jidQ+1eNo/zH2Rx4Ar4NTr2T7PpfQ==
 
 mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"

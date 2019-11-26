@@ -5,7 +5,11 @@ module.exports = (router, params = []) => {
     router.param(
       param,
       IsValidId([param]),
-      ParamsValidation(param, model),
+    );
+
+    router.param(
+      param,
+      ParamsValidation(model, param),
     );
   });
 };

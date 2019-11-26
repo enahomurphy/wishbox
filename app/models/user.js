@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const mongoseDelete = require('mongoose-delete');
 
 const Model = require('.');
 const helpers = require('./helpers');
@@ -65,11 +66,16 @@ const UserSchema = new mongoose.Schema(
       required: true,
       default: 'user',
     },
+    deleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: {
       createdAt: 'created_at',
       updatedAt: 'updated_at',
+      deletedAt: 'deleted_at',
     },
   },
 );
@@ -135,5 +141,6 @@ UserSchema.pre('save', function hashPassword(next) {
 });
 
 UserSchema.loadClass(User);
+UserSchema.plugin(mongoseDelete);
 
 module.exports = mongoose.model('User', UserSchema);

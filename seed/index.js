@@ -1,10 +1,6 @@
 const winston = require('winston');
 
-require('../server');
 
-/**
- * @class
- */
 module.exports = class Seed {
   constructor(schema) {
     this.data = [];

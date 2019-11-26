@@ -4,9 +4,6 @@ const Response = require('../common/response');
 const Transformer = require('../common/transformer');
 const { AsyncWrapper } = require('../middleware');
 
-/**
- * @class
- */
 module.exports = class Controller {
   constructor(schema, type, param, relation) {
     this.schema = schema;
@@ -23,23 +20,13 @@ module.exports = class Controller {
     this.remove = AsyncWrapper(this.remove.bind(this));
   }
 
-
   setUpdatable(array) {
     this.updatable = array;
     return this;
   }
 
   async get(req, res) {
-    const id = req.params[this.param];
-    const data = await this.schema.get(id);
-
-    if (data) {
-      return Response.success(res, data);
-    }
-
-    const message = `${this.type} with id ${id} not found`;
-
-    return Response.notFound(res, 'NotFound', message);
+    return Response.success(res, req[this.type]);
   }
 
   async getAll(req, res) {
@@ -62,9 +49,10 @@ module.exports = class Controller {
   }
 
   async update(req, res) {
-    const { id } = req.params;
+    const { [this.param]: id } = req.params;
     const { updatable } = this.setUpdatable();
     const body = _.pick(req.body, updatable);
+
     const data = await this.schema.updateData(id, body);
 
     return Response.success(res, data);
@@ -79,8 +67,9 @@ module.exports = class Controller {
   }
 
   async remove(req, res) {
-    const { id } = req.params;
-    const data = await this.schema.delete(id);
+    const { [this.param]: id } = req.params;
+    const data = await this.schema.delete({ _id: id });
+
     if (data) {
       return Response.success(res, { message: `${this.type} with id ${id} has been deleted` });
     }
