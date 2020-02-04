@@ -14,6 +14,10 @@ class User extends Controller {
   async me(req, res) {
     res.status(200).json(req.user);
   }
+
+  async meta(req, res) {
+    res.status(200).json(req.user);
+  }
 }
 
 module.exports = new User();

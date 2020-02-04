@@ -70,7 +70,7 @@ class Wish extends Model {
   static buildQuery(search) {
     const query = {};
     const {
-      title, q, wishId, status, details, deleted,
+      title, q, wishId, status, details, deleted, userId, slotId,
     } = search;
 
     if (q) {
@@ -94,6 +94,14 @@ class Wish extends Model {
 
     if (mongoose.Types.ObjectId.isValid(wishId)) {
       query._id = wishId;
+    }
+
+    if (mongoose.Types.ObjectId.isValid(userId)) {
+      query.userId = userId;
+    }
+
+    if (mongoose.Types.ObjectId.isValid(slotId)) {
+      query.slotId = slotId;
     }
 
     if (deleted) {

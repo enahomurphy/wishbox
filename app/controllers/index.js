@@ -37,7 +37,11 @@ module.exports = class Controller {
   }
 
   async create(req, res) {
-    const instance = new this.schema(req.body);
+    const instance = new this.schema({
+      ...req.body,
+      userId: req.user._id,
+    });
+
     const error = instance.validateSync();
     if (error) {
       return Response
