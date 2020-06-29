@@ -1,25 +1,25 @@
 version: '3'
 
 services:
-  wishbox-service:
-    container_name: wishbox-service
+  api:
+    container_name: wishbox-api
     image: node:latest
     build:
-      context: .
+      context: ./api
       dockerfile: Dockerfile
-    env_file: .env
+    env_file: api/.env
     volumes: 
-      - .:/var/www
+      - ./api:/var/www
       - /var/www/node_modules
     ports:
       - "8080:3000"
     depends_on:
-      - whisbox-db
+      - db
     networks:
       - wishbox_network
     command: npm run dev 
 
-  whisbox-db:
+  db:
     container_name: mongo
     image: mongo:4.0.12
     ports:
