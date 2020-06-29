@@ -1,0 +1,55 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "Wish box web app",
+  "main": "index.js",
+  "author": "Enaho Murphy",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "start": "parcel serve src/public/index.html",
+    "build-prod": "parcel build src/public/index.html",
+    "lint": "node_modules/.bin/eslint --ext .jsx --ext .js src"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint"
+    }
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.10.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-router-dom": "^5.1.2",
+    "react-toast-notifications": "^2.4.0",
+    "react-use": "^13.27.0",
+    "route": "^0.2.5",
+    "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/preset-react": "^7.8.3",
+    "@types/react": "^16.8.0",
+    "@types/react-dom": "^16.9.5",
+    "@types/styled-components": "^4.1.16",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-react-app": "^4.0.1",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "husky": "^4.2.5",
+    "parcel": "^2.0.0-alpha.3.2",
+    "parcel-bundler": "^1.12.4"
+  },
+  "displayName": "Wish Box"
+}
