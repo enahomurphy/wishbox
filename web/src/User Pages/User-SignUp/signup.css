@@ -159,7 +159,7 @@
   background: #377CFF;
   box-sizing: border-box;
   border-radius: 6px;
-  margin-top: 20px;
+  margin-top: 25px;
   margin-bottom: 32px;
   justify-content: center;
   align-items: center;
@@ -170,6 +170,7 @@
   font-style: normal;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .login-link {
@@ -181,7 +182,8 @@
   color: #909090;
 }
 
-.login-link a {
+.login-link a , .log-in {
   text-decoration: none;
   color: #377CFF;
+  cursor: pointer;
 }

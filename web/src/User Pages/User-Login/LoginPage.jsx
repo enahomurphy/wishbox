@@ -1,11 +1,11 @@
-import React from '@/pages/signUp/react';
-import {Link} from '@/pages/signUp/react-router-dom'
-import './homepage.css'
-import MusicIcon from './svg/MusicIcon'
-import Ellipse3 from './images/Ellipse 3.png'
-import Eliipse2 from './images/Ellipse 2.png'
+import React from "react";
+import { Link } from "react-router-dom";
+import { MusicIcon } from "../../svg";
+import Ellipse3 from "../../images/Ellipse 3.png";
+import Eliipse2 from "../../images/Ellipse 2.png";
+import "../User-SignUp/signup.css";
 
-const SignUp = () => {
+const Login = () => {
   return (
     <div id="container">
       <div className="wishbox-container">
@@ -20,13 +20,13 @@ const SignUp = () => {
           <p className="p-tag2">Funmilola Akingbade</p>
           <div className="profile-icon">
             <p>
-              <img src={ Ellipse3 } alt="profile" />
+              <img src={Ellipse3} alt="profile" />
             </p>
             <p>
-              <img src={ Eliipse2 } alt="Bigprofile" />
+              <img src={Eliipse2} alt="Bigprofile" />
             </p>
             <p>
-              <img src={ Ellipse3 } alt="profile" />
+              <img src={Ellipse3} alt="profile" />
             </p>
           </div>
         </div>
@@ -36,13 +36,6 @@ const SignUp = () => {
           <p className="wishbox-title-2">Welcome to wishBox</p>
           <p className="span-1">Fill out the form to make your wish</p>
           <form>
-            <label className="label">Full Name</label>
-            <br />
-            <input
-              type="text"
-              placeholder="Enter your first name and last name"
-              className="input-box"
-            />
             <label className="label">Email Address</label>
             <br />
             <input
@@ -57,21 +50,12 @@ const SignUp = () => {
               placeholder="Enter your preferred password"
               className="input-box"
             />
-            <label className="label">Confirm Password</label>
-            <br />
-            <input
-              type="password"
-              placeholder="Repeat password"
-              className="input-box"
-            />
-            <div className="checkbox-container">
-              <input type="checkbox" className="checkbox" />
-              <span>I agree to the terms and conditions</span>
-            </div>
-            <button className="signUp-btn">Sign Up</button>
+            <Link to="/users/Home" className="log-in">
+              <button className="signUp-btn">Log In</button>
+            </Link>
           </form>
           <p className="login-link">
-            Already have an account?<Link to="/pages/sign_up"> Login</Link>
+            Don't have account?<Link to="/"> Sign Up here</Link>
           </p>
         </div>
       </div>
@@ -79,4 +63,4 @@ const SignUp = () => {
   );
 }
 
-export default SignUp;
+export default Login;
