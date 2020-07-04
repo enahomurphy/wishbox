@@ -22,7 +22,7 @@
   margin-top: 32px;
 }
 
-.home {
+.home, .home-slots {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +30,7 @@
   margin-top: 230px;
 }
 
-.home p {
+.home p, .slots-slots p {
   font-family: 'Carbin', sans-serif;
   font-size: 18px;
   line-height: 22px;
@@ -46,7 +46,13 @@
   top: 302px;
 }
 
-.slots, .wishes, .fulfiled {
+.slot-activebar {
+  position: absolute;
+  left: 0;
+  top: 422px;
+}
+
+.slots, .wishes, .fulfiled, .slots-slots {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
@@ -60,7 +66,7 @@
   left: 70px;
 }
 
-.slots p, .wishes p, .fulfiled p {
+.slots p, .home-slots p, .wishes p, .fulfiled p {
   font-family: 'Carbin', sans-serif;
   font-size: 18px;
   line-height: 22px;
