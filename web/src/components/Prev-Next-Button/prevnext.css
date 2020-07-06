@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.btn-wrapper {
+  position: absolute;
+  top: 940px;
+  left: 1170px;
+  width: 190px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prev {
+  font-family: 'Carbin', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 12px;
+  color: #FFF;
+  position: absolute;
+  right: 155px;
+}
+
+.next {
+  font-family: 'Carbin', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 12px;
+  color: #FFF;
+  position: absolute;
+  right: 16px;
+}
+
+.num-pages {
+  font-family: 'Carbin', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #4A4A4A;
+  padding: 0 8px;
+}
+
+.two {
+  color: red;
+}
