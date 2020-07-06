@@ -144,4 +144,14 @@
   color: #FFF;
   outline: none;
   border: none;
+  cursor: pointer;
+}
+
+.slots-container a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  cursor: pointer;
 }

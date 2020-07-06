@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
+import Title from '../../components/Title/Title';
 import SlotsData from '../../components/SlotsData';
-import SideBarSlots from '../../components/sidebar/SideBarSlots';
+import SideBar from '../../components/sidebar/SideBar';
 import PrevNext from '../../components/Prev-Next-Button/PrevNext';
 import Footer from '../../components/Footer/Footer';
 import './userslots.css';
@@ -9,7 +10,8 @@ import {
   Layer1,
   Vector4,
   ActiveBar,
-  Group, Vector1,
+  Group,
+  Vector1,
   Fulfilled
 } from '../../svg';
 
@@ -20,18 +22,15 @@ const Content = () => {
       put your wish out there and someone might just get it for<br />
       you and you can also return the favor if you like!
     </div>
-  )
+  );
 }
 
 const UserSlots = () => {
   return (
     <div className="slots-container">
-      <div className="slots-header">
-        <h2>Slots</h2>
-        <p>6 Slots in Progress</p>
-      </div>
+      <Title slots="Slots" label="6 Slots in Progress"/>
       <Header />
-      <SideBarSlots
+      <SideBar
         wishbox="wishBox"
         layer={ Layer1() }
         home="Home"

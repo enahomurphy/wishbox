@@ -152,27 +152,6 @@
   padding-left: 10px;
 }
 
-.signUp-btn {
-  display: flex;
-  width: 400px;
-  height: 50px;
-  background: #377CFF;
-  box-sizing: border-box;
-  border-radius: 6px;
-  margin-top: 25px;
-  margin-bottom: 32px;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  font-weight: 500;
-  color: #fff;
-  font-family: 'Carbin', sans-serif;
-  font-style: normal;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
 .login-link {
   font-style: normal;
   font-weight: normal;

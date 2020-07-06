@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MusicIcon } from '../../svg';
 import Ellipse3 from '../../images/Ellipse 3.png';
 import Eliipse2 from '../../images/Ellipse 2.png';
+import Button from '../../components/Button';
 import './signup.css';
 
 const SignUp = () => {
@@ -20,13 +21,13 @@ const SignUp = () => {
           <p className="p-tag2">Funmilola Akingbade</p>
           <div className="profile-icon">
             <p>
-              <img src={Ellipse3} alt="profile" />
+              <img src={ Ellipse3 } alt="profile" />
             </p>
             <p>
-              <img src={Eliipse2} alt="Bigprofile" />
+              <img src={ Eliipse2 } alt="Bigprofile" />
             </p>
             <p>
-              <img src={Ellipse3} alt="profile" />
+              <img src={ Ellipse3 } alt="profile" />
             </p>
           </div>
         </div>
@@ -68,7 +69,7 @@ const SignUp = () => {
               <input type="checkbox" className="checkbox" />
               <span>I agree to the terms and conditions</span>
             </div>
-            <button className="signUp-btn">Sign Up</button>
+            <Button signUp="Sign Up" />
           </form>
           <p className="login-link">
             Already have an account?<Link to="users/Login"> Login</Link>

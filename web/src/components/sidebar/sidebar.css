@@ -30,7 +30,7 @@
   margin-top: 230px;
 }
 
-.home p, .slots-slots p {
+.home p, .slots-slots p, .wish-blue-text {
   font-family: 'Carbin', sans-serif;
   font-size: 18px;
   line-height: 22px;
@@ -40,7 +40,7 @@
   margin-top: 10px;
 }
 
-.activebar {
+.home-active-bar {
   position: absolute;
   left: 0;
   top: 302px;
@@ -50,6 +50,18 @@
   position: absolute;
   left: 0;
   top: 422px;
+}
+
+.wish-active-bar {
+  position: absolute;
+  left: 0;
+  top: 555px;
+}
+
+.fulfiled-active-bar {
+  position: absolute;
+  left: 0;
+  top: 690px;
 }
 
 .slots, .wishes, .fulfiled, .slots-slots {
@@ -62,11 +74,11 @@
 
 .group {
   position: absolute;
-  top: 403px;
+  top: 409px;
   left: 70px;
 }
 
-.slots p, .home-slots p, .wishes p, .fulfiled p {
+.slots p, .home-slots p, .wishes p, .fulfiled p, .slots {
   font-family: 'Carbin', sans-serif;
   font-size: 18px;
   line-height: 22px;
@@ -74,4 +86,8 @@
   font-style: normal;
   color: #AAACAE;
   margin-top: 10px;
+}
+
+#sidebar-container a {
+  text-decoration: none;
 }

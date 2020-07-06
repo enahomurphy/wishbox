@@ -7,21 +7,41 @@ import SideBar from '../../components/sidebar/SideBar';
 import Header from '../../components/Header/Header';
 import RecentWishes from '../../components/RecentWishes';
 import Footer from '../../components/Footer/Footer';
-import { Slots } from '../../svg';
-import { Vector2 } from '../../svg/';
-import { Fulfiled2 } from '../../svg';
 import './userhome.css';
+import {
+  Layer,
+  Vector,
+  ActiveBar,
+  Group,
+  Vector1,
+  Fulfilled,
+  Slots,
+  Vector2,
+  Fulfiled2
+} from '../../svg';
 
 class UserHome extends React.Component {
   render () {
     return (
       <div id="userpage-container">
-        <SideBar />
         <Header />
+        <SideBar
+        wishbox="wishBox"
+        layer={ Layer() }
+        homeBlueText="Home"
+        homeActiveBar={ ActiveBar() }
+        Slots={ Vector() }
+        Group={ Group() }
+        slot="Slots"
+        Vector={ Vector1() }
+        wish="Wishes"
+        Fulfiled={ Fulfilled() }
+        fulfiled="Fulfiled"
+      />
         <div className="boxsection-container">
-          <BoxSection num={203} img={Slots()} label="All Open Slots" />
-          <BoxSection1 num={823} img1={Vector2()} label="All Your Pending wishes" />
-          <BoxSection2 num={16} img2={Fulfiled2()} label="All Fulfiled Wishes" />
+          <BoxSection num={ 203 } img={ Slots() } label="All Open Slots" />
+          <BoxSection1 num={ 823 } img1={ Vector2() } label="All Your Pending wishes" />
+          <BoxSection2 num={ 16 } img2={ Fulfiled2() } label="All Fulfiled Wishes" />
         </div>
         <div className="p-tag">
           <p className="recent">Recent Slots Created</p>

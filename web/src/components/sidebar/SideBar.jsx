@@ -1,44 +1,64 @@
 import React from 'react';
-import { Layer } from '../../svg';
-import { Group } from '../../svg';
-import { Vector } from '../../svg';
-import { Vector1 } from '../../svg';
-import { Fulfilled } from '../../svg';
-import { ActiveBar } from '../../svg';
+import { Link } from 'react-router-dom';
 import './sidebar.css';
 
-const SideBar = () => {
+const SideBar = (props) => {
   return (
     <div id="sidebar-container">
-      <div>
-        <p className="wishbox">wishBox</p>
-        <div className="home">
-          <div className="activebar">
-            <ActiveBar />
-          </div>
-          <div>
-            <Layer />
-          </div>
-          <p>Home</p>
+      <div className="wishbox">{ props.wishbox }</div>
+      <Link to="/users/Home">
+      <div className="home-slots">
+        <div >
+          { props.layer }
         </div>
-        <div className="slots">
-          <div className="group">
-            <Group />
-          </div>
-          <Vector />
-          <p>Slots</p>
+        <p>{ props.home }</p>
+        <div className="wish-blue-text">
+          { props.homeBlueText }
         </div>
-        <div className="wishes">
-          <Vector1 />
-          <p>Wishes</p>
+        <div className="home-active-bar">
+          { props.homeActiveBar }
         </div>
-        <div className="fulfiled">
-          <Fulfilled />
-          <p>Fulfiled</p>
         </div>
-      </div>
+      </Link>
+      <Link to="/users/Slots">
+      <div className="slots-slots">
+        <div className="slot-activebar">
+          { props.ActiveBar }
+        </div>
+        <div className="group">
+          { props.Group }
+        </div>
+          { props.Slots }
+        <p>{ props.slots }</p>
+        <div className="slots">{ props.slot }</div>
+        </div>
+      </Link>
+      <Link to="/users/Wish">
+      <div className="wishes">
+        { props.Vector }
+        <p>{ props.wish }</p>
+        <div className="wish-blue-text">
+          { props.wishes }
+        </div>
+        <div className="wish-active-bar">
+          { props.WishActiveBar }
+        </div>
+        </div>
+      </Link>
+      <Link to="/users/Fulfiled Wish">
+      <div className="fulfiled">
+        { props.Fulfiled }
+        <p>{ props.fulfiled }</p>
+        <div className="wish-blue-text">
+          { props.fulfiledBlueText }
+        </div>
+        <div className="fulfiled-active-bar">
+          { props.fulfiledActiveBar }
+        </div>
+        </div>
+      </Link>
     </div>
   );
 }
 
-export default SideBar
+export default SideBar;

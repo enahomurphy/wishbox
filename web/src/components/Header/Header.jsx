@@ -1,9 +1,7 @@
 import React from 'react';
-import {Group2} from '../../svg'
-import { Group3 } from '../../svg';
-import { SearchIcon } from '../../svg';
-import ProfileLogo from '../../images/Ellipse 1.png'
-import './header.css'
+import { Group2, Group3, SearchIcon } from '../../svg';
+import ProfileLogo from '../../images/Ellipse 1.png';
+import './header.css';
 
 class Header extends React.Component {
   render () {
@@ -14,7 +12,7 @@ class Header extends React.Component {
             <div className="red-dots">
               <Group3 />
             </div>
-            <Group2 />
+              <Group2 />
           </div>
           <img src={ProfileLogo} alt="profile-logo" />
         </div>

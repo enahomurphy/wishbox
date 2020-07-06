@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "../../components/Button";
 import { MusicIcon } from "../../svg";
 import Ellipse3 from "../../images/Ellipse 3.png";
 import Eliipse2 from "../../images/Ellipse 2.png";
@@ -20,13 +21,13 @@ const Login = () => {
           <p className="p-tag2">Funmilola Akingbade</p>
           <div className="profile-icon">
             <p>
-              <img src={Ellipse3} alt="profile" />
+              <img src={ Ellipse3 } alt="profile" />
             </p>
             <p>
-              <img src={Eliipse2} alt="Bigprofile" />
+              <img src={ Eliipse2 } alt="Bigprofile" />
             </p>
             <p>
-              <img src={Ellipse3} alt="profile" />
+              <img src={ Ellipse3 } alt="profile" />
             </p>
           </div>
         </div>
@@ -51,7 +52,7 @@ const Login = () => {
               className="input-box"
             />
             <Link to="/users/Home" className="log-in">
-              <button className="signUp-btn">Log In</button>
+              <Button logIn="Log In" />
             </Link>
           </form>
           <p className="login-link">

@@ -1,5 +1,6 @@
 import React from 'react';
-import '../User Pages/User-Slots/userslots.css'
+import { Link } from 'react-router-dom';
+import '../User Pages/User-Slots/userslots.css';
 
 const SlotsData = (props) => {
   return (
@@ -20,8 +21,10 @@ const SlotsData = (props) => {
         </div>
         <p className="line"></p>
         <div className="btn-slots">
+        <Link to="/users/Make Wish" >
           <button>Make a Wish</button>
-        </div>
+        </Link>
+          </div>
       </div>
     </div>
   );
