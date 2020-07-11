@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#sidebar-container {
+  width: 120px;
+  height: 1021px;
+  background: #fff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wishbox {
+  font-family: 'Circular Std', sans-serif;
+  font-size: 18px;
+  line-height: 23px;
+  color: #377CFF;
+  margin-top: 32px;
+}
+
+.home, .home-slots {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 230px;
+}
+
+.home p, .slots-slots p, .wish-blue-text {
+  font-family: 'Carbin', sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  font-style: normal;
+  color: #377CFF;
+  margin-top: 10px;
+}
+
+.home-active-bar {
+  position: absolute;
+  left: 0;
+  top: 302px;
+}
+
+.slot-activebar {
+  position: absolute;
+  left: 0;
+  top: 422px;
+}
+
+.wish-active-bar {
+  position: absolute;
+  left: 0;
+  top: 555px;
+}
+
+.fulfiled-active-bar {
+  position: absolute;
+  left: 0;
+  top: 690px;
+}
+
+.slots, .wishes, .fulfiled, .slots-slots {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.group {
+  position: absolute;
+  top: 409px;
+  left: 70px;
+}
+
+.slots p, .home-slots p, .wishes p, .fulfiled p, .slots {
+  font-family: 'Carbin', sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  font-style: normal;
+  color: #AAACAE;
+  margin-top: 10px;
+}
+
+#sidebar-container a {
+  text-decoration: none;
+}
+
