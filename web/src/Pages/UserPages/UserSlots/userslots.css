@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.slots-container {
+  background: #E5E5E5;
+  width: 1440px;
+}
+
+.slots-header {
+  position: absolute;
+  top: 94px;
+  left: 199px;
+}
+
+.slots-header h2 {
+  font-family: 'Carbin', sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 36px;
+  line-height: 44px;
+  color: #3D3D3D;
+}
+
+.slots-header p {
+  font-family: 'Carbin', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #909090;
+}
+
+.slots-container-wrapper {
+  position: absolute;
+  top: 199px;
+  left: 199px;
+}
+
+.slots-data-container {
+  width: 1162px;
+  height: 124.98px; 
+  background: #FFF;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  display: flex;
+  margin-top: 10px;
+}
+
+.num-box {
+  width: 100px;
+  height: 124.98px;
+  background: #F7F7F7;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.num-box h3, .num-box p{
+  font-family: 'Carbin', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #0E0E52;
+  text-align: center;
+}
+
+.title-box{
+  width: 275px;
+  height: 124.98px;
+  padding: 16px 10px;
+  border-right: 1px solid #EBEBEB;
+}
+
+.title {
+  font-family: 'Carbin', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 29px;
+  color: #3D3D3D;
+}
+
+.date {
+  font-family: 'Carbin', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #0E0E52;
+  margin-top: 10px;
+}
+
+.slots-wishes {
+  font-family: 'Carbin', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: #999999;
+  margin-top: 10px;
+}
+
+.content-box {
+  width: 448px;
+  height: 124.98px;
+  border-right: 1px solid #EBEBEB;
+  padding: 24px 12px;
+}
+
+.content-box p {
+  width: 418px;
+  height: 77.99px;
+  font-family: 'Carbin', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 26px;
+  color: #999999;
+}
+
+.btn-slots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.btn-slots button {
+  width: 200px;
+  height: 49.99px;
+  background: #377CFF;
+  border-radius: 3px;
+  font-family: 'Carbin', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFF;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* .slots-container a {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  cursor: pointer;
+} */
